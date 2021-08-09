@@ -1,0 +1,189 @@
+\documentclass[dutch,11pt,a4paper]{article}
+% ============================PREAMBLE=================================
+\pagestyle{plain}
+\usepackage[dutch]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\graphicspath{{./}}
+
+% ---Simons shizzle: afblijven!---
+\usepackage[dvipsnames]{xcolor} % maakt het mogelijk zelf kleuren te definiëren
+\definecolor{darkPurple}{RGB}{80,0,80} % definieer donkerpaars
+\definecolor{lightGray}{RGB}{150, 150, 150}
+\usepackage{hyperref} % maakt links en cross-references interactief
+\usepackage[all]{hypcap} % zorgt dat hyperref beter naar captions kan refereren
+\hypersetup{colorlinks=true,urlcolor=blue,citecolor=darkPurple,linkcolor=darkPurple} % bepaalt kleuren van de links
+\newcommand{\cref}[2]{\hyperref[#2]{#1~\ref*{#2}}} % voeg woord aan link toe
+
+\usepackage[labelfont=bf,margin=0.5cm]{caption} % interface voor captions
+\usepackage{subcaption}
+
+\usepackage{microtype} % mierenneukerij
+\usepackage{xfrac} % mooie breuken
+
+\usepackage[utf8]{inputenc} % maakt onder andere accenten mogelijk (¨´` ...)
+\usepackage[T1]{fontenc} % zorgt dat utf8-characters goed getoond worden
+\usepackage{lmodern} % maakt type-setting compatibel met utf8
+
+\usepackage{parskip} % voegt enters tussen paragrafen toe
+
+\usepackage[binary-units=true]{siunitx}
+% geef fysische grootheden op een consistente manier weer
+\sisetup{retain-explicit-plus, list-final-separator={\,en\,}, list-pair-separator={\,en\,}, range-phrase={\,tot\,}, separate-uncertainty, per-mode=fraction, table-align-uncertainty=true}
+\usepackage{textcomp} % vermijd conflicten tussen microtype en siunitx
+
+\usepackage[siunitx,straightlabels]{circuitikz} % elektrische circuits
+\tikzset{component/.style={draw,thick,circle,fill=white,minimum size =0.75cm,inner sep=0pt}}
+\usepackage{tikz} % tekenen! joepie!
+\usetikzlibrary{decorations.markings} % voeg decoraties zoals pijltjes toe
+\tikzset{->-/.style={decoration={ % commando om linkerpijl op een bepaalde plaats te zetten
+markings,
+  mark=at position #1 with {\arrow{>}}},postaction={decorate}}}
+\tikzset{-<-/.style={decoration={ % commando om rechterpijl op een bepaalde plaats te zetten
+  markings,
+  mark=at position #1 with {\arrow{<}}},postaction={decorate}}}
+\usetikzlibrary{arrows.meta} % meer pijlen!!!
+
+\usepackage{titlesec} % interface voor commando's omtrent secties
+%\newcommand{\sectionbreak}{\clearpage} % zorg dat elke sectie op een nieuwe pagina begint
+
+\usepackage{booktabs, dcolumn} % tabellen
+\renewcommand{\arraystretch}{1.2} % rij-afstand in tabellen
+
+\usepackage{multicol}
+\setlength{\columnsep}{0.5cm}
+\setlength{\columnseprule}{0.2pt}
+
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist
+
+\usepackage{listings}
+\usepackage{floatrow}
+\usepackage{minted}    
+\floatsetup[listing]{style=Plaintop}
+\floatsetup[table]{capposition=top}
+\usemintedstyle{borland}
+
+\usepackage{systeme}
+
+\usepackage{xspace}
+\xspaceaddexceptions{\xspace}
+\newcommand{\abbr}[2]{\expandafter\def\csname#1\endcsname{#2\xspace}}
+
+\usepackage{bm}
+\newcommand{\mtrx}[1]{#1}
+\newcommand{\tr}[1]{#1^\intercal}
+\newcommand{\id}{\mtrx{I}_n}
+\renewcommand{\vec}[1]{\bm{#1}}
+
+\usepackage{geometry}
+
+\usepackage[backend=biber]{biblatex}
+\usepackage{url}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+\usepackage{csquotes}
+\usepackage{float}
+\addbibresource{biblio.bib}
+% ---Einde Simons shizzle---
+
+\newcommand{\appname}{\texttt{Crescendoplatform}\xspace}
+
+\title{%
+  \appname \\
+  \large Beschrijving van de applicatie
+}
+\author{Simon Cockx}
+\date{August 2021}
+
+\begin{document}
+
+\maketitle
+
+
+Dit project heeft als doel om de administratieve taken die komen kijken bij een jeugdbeweging geheel of gedeeltelijk te automatiseren. Daarnaast probeert ze tools aan te bieden om de (hoofd-)leiding van de jeugdbeweging te ondersteunen in hun dagelijkse werking.
+
+In eerste instantie is het de bedoeling om één specifieke Chiro, met name Chiro Crescendo Pellenberg, te ondersteunen. Hoewel dit in de toekomst mogelijk wordt uitgebreid naar andere jeugdbewegingen, is het niet de bedoeling om \appname buiten Vlaanderen uit te rollen. 
+
+Merk op dat de documentatie in het Nederlands is geschreven. De code van de applicatie wordt echter geschreven in het Engels, met uitzondering van domein-specifieke termen (denk aan ``hoofdleider'' of ``vereniging''), die vaak geen eenduidige vertaling hebben. Hoewel dit soms tot ongemakkelijke combinaties tussen Engels en Nederlands leidt, is dit de beste manier om ambiguïteiten en misverstanden te voorkomen. (zie ook \cite{stackexchange:naming_domain})
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Context en samenvatting} \label{sec:context}
+Bij het runnen van een jeugdbeweging komt heel wat administratie kijken. Dit met de hand uitvoeren of met behulp van niet-gespecialiseerde tools (bv Google Forms, Excel, enz.) kost tijd en zorgt voor minder kwalitatief werk. Denk aan een inschrijvingsysteem voor ouders om hun kinderen in te schrijven. Enerzijds moet het gemakkelijk zijn voor ouders om al hun gegevens en die van hun kinderen te beheren; anderzijds willen leiders op een overzichtelijke manier de gegevens van hun groep bekijken en gebruiken. Bij elke inschrijving moeten er bovendien gegevens worden doorgespeeld aan de koepelorganisatie Chirojeugd Vlaanderen, die de verzekering regelt. Daarnaast speelt beveiliging een belangrijke rol: buiten de leiders en de ouders zelf, mag niemand aan deze gegevens kunnen. Al deze aspecten zijn geen hoofdzaak van een jeugdbeweging, maar vormen wel een bijkomende last voor de leidersploeg, en hier hebben we het nog enkel gehad over inschrijvingen. Het is dus van belang om zo veel mogelijk van deze taken te ontlasten van de leidersploeg, zodat die zich kan bezighouden met wat echt belangrijk is.
+
+\appname streeft er tevens naar om een hulpmiddel te vormen bij de dagelijkse werking van een jeugdbeweging. Denk daarbij aan tools om vergaderverslagen te indexeren, locaties te claimen, de leiderverdeling deels te automatiseren, enzovoort.
+
+Op administratief vlak probeert \appname zoveel mogelijk te vereenvoudigen van elk van de volgende aspecten.
+\begin{itemize}
+\item Inschrijvingen van leden.
+\item Verzekering van leden.
+\item Subsidie-aangifte voor de gemeente.
+\item Registratie van betalingen.
+\item Integratie met een e-mailservice.
+\end{itemize}
+Daarnaast kan ze hulpmiddelen aanbieden op de volgende manieren. Deze lijst is slechts voorlopig: als er geen vraag naar een bepaalde tool is, dan zal die tool uit de lijst verdwijnen.
+\begin{itemize}
+\item !Vergaderverslagen bijhouden en indexeren. De indexatie zorgt ervoor dat relevante verslagen later makkelijker teruggevonden kunnen worden op basis van de besproken onderwerpen.
+\item !Huis-aan-huis-activiteiten noteren. Op deze manier wordt het mogelijk om huis-aan-huisactiviteiten meer te spreiden, zodat bepaalde huizen in de buurt van de jeugdbeweging niet overbelast worden.
+\item Aanwezigheden bijhouden van leiders. Één van de meest uitdagende taken binnen een jeugdbeweging is om werk binnen de leidersploeg eerlijk te verdelen. Bijhouden wie wanneer aanwezig was, is daar een eerste stap in.
+\item Speellocaties claimen. Dit voorkomt dat teveel groepen tegelijk naar dezelfde locatie willen gaan.
+\item De leidersverdeling digitaliseren. Enerzijds kan dit helpen door automatisch verdelingen voor te stellen, en anderzijds kan dit helpen met de visualisatie van de vele voorkeuren en regels die mee in rekening moeten worden gebracht.
+\item Flyerroutes genereren. Want een eerlijke set aan flyerroutes maken die heel Pellenberg bedekken is geen gemakkelijke taak om met de hand uit te voeren.
+\item Verjaardagkalender tonen. Zodat er geentje wordt gemist.
+\item Een platform voor tweedehandshemden aanbieden. Ouders kunnen zo gemakkelijker tweedehandshemden kopen of verkopen.
+\item Contactgegevens van oud-leiding en -leden bijhouden. Om ze later uit te kunnen nodigen voor bepaalde activiteiten of evenementen.
+\end{itemize}
+
+
+
+\section{Stakeholders} \label{sec:stakeholders}
+
+\paragraph{Leidersploeg} Het voornaamste belang voor de leidersploeg is om zo min mogelijk bezig te moeten zijn met administratie, maar vooral te kunnen focussen op de hoofdtaak als leider: kinderen entertainen. Er dient dus zo veel mogelijk automatisch te gebeuren, en al dat niet automatisch kan verlopen dient met een eenvoudige en intuïtieve interface te regelen zijn. Leiders moeten tevens op eenvoudige wijze aan nodige gegevens kunnen (bv e-mailadressen en adressen van ouders).
+
+\paragraph{Hoofdleiding} Ook wel groepsleiding genoemd. De hoofdleiding is verantwoordelijk voor het beheren van de inschrijvingssite (bv gegevensoverdracht bij de jaarovergang, openen en sluiten van de inschrijvingen), voor de verzekering van leden via het GAP en voor het aangeven van subsidies bij de lokale gemeente. Daarnaast is duidelijke communicatie met de ouders via o.a. een e-mailservice zoals MailChimp of EmailOctopus een belangrijke taak voor hen, waardoor een makkelijke manier om e-maillijsten up-to-date te houden een must is.
+
+\paragraph{Kassiers} Ook wel de financieel verantwoordelijken genoemd. Deze personen zijn verantwoordelijk voor het registreren en alle uitgaven en inkomsten, inclusief die van het inschrijvingsgeld. Aangeven welke gezinnen reeds betaald hebben voor de inschrijving van hun kinderen, is dus een belangrijke functie voor \appname.
+
+\paragraph{Beheer} Deze functie, vaak vervult door een vrijwillige groep volwassen begeleiders, helpt met het technisch onderhoud van de gebouwen van een jeugdbeweging en beheert projecten op langere termijn, zoals bouwprojecten. Daar komen regelmatig uitgaven bij te pas die gesubsidieerd worden door de lokale gemeente. Een eenvoudige manier om facturen en rekeningen aan te geven, kan hiervoor een nuttige tool zijn.
+
+\paragraph{Ouders} Ouders willen op eenvoudige manier hun kinderen kunnen inschrijven en gegevens kunnen beheren.
+
+\paragraph{E-mailservices} E-mailservices maken het mogelijk om mooie e-mails op te stellen en te versturen naar aangemaakte e-maillijsten. \appname wilt initieel MailChimp en EmailOctopus ondersteunen door e-maillijsten automatisch up-to-date te houden.
+
+\paragraph{De gemeente} Lokale gemeentes ondersteunen jeugdbewegingen aan de hand van subsidies. Deze subsidies worden berekend op basis van een reeks aan documenten die de jeugdbeweging moet voorleggen. \appname zal initieel het subsidiesysteem van Lubbeek ondersteunen door de nodige informatie en documenten waarover het beschikt op een overzichtelijke manier te verzamelen voor de hoofdleiding.
+
+\paragraph{Chirojeugd Vlaanderen} Deze koepelorganisatie van alle Chiro's regelt de verzekeringen van leden, leiders en andere vrijwilligers (bv keukenploeg) doormiddel van het GAP (groepsadministratieportaal).
+
+
+
+\section{Details over \appname} \label{sec:details}
+% Hou in gedachten: gebruikersgemak, motivatie/documentatie, uitbreidbaarheid, onderhoudsgemak, beveiliging
+\subsection{Inschrijvingssysteem}
+\subsubsection{Inschrijvingswebsite}
+\subsubsection{Ledenlijsten}
+\subsubsection{Jaarovergang}
+
+\subsection{Verzekeringen}
+
+\subsection{E-mailservices}
+
+\subsection{Registratie van betalingen}
+
+\subsection{Subsidies}
+
+\subsection{Beveiliging}
+
+\subsection{Bijkomende tools}
+
+
+
+
+\section{Functionele vereisten}
+
+\printbibliography
+
+\end{document}
