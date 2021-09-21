@@ -95,7 +95,7 @@ markings,
   \large Beschrijving van de applicatie
 }
 \author{Simon Cockx}
-\date{August 2021}
+\date{Augustus 2021}
 
 \begin{document}
 
@@ -137,6 +137,7 @@ Daarnaast kan ze hulpmiddelen aanbieden op de volgende manieren. Deze lijst is s
 \item Een platform voor tweedehandshemden aanbieden. Ouders kunnen zo gemakkelijker tweedehandshemden kopen of verkopen.
 \item Contactgegevens van oud-leiding en -leden bijhouden. Om ze later uit te kunnen nodigen voor bepaalde activiteiten of evenementen.
 \end{itemize}
+Om echt te weten welke tools nuttig kunnen zijn, is feedback van alle eindgebruikers belangrijk. Op eerste plaats is het dus belangrijk om bijvoorbeeld de leidersploeg op vergaderingen en tussendoor mee in het ontwikkelingsproces te betrekken. Daarnaast moet digitale feedback van leiders, ouders en beheer integraal deel uitmaken van \appname.
 
 
 
@@ -144,9 +145,9 @@ Daarnaast kan ze hulpmiddelen aanbieden op de volgende manieren. Deze lijst is s
 
 \paragraph{Leidersploeg} Het voornaamste belang voor de leidersploeg is om zo min mogelijk bezig te moeten zijn met administratie, maar vooral te kunnen focussen op de hoofdtaak als leider: kinderen entertainen. Er dient dus zo veel mogelijk automatisch te gebeuren, en al dat niet automatisch kan verlopen dient met een eenvoudige en intuïtieve interface te regelen zijn. Leiders moeten tevens op eenvoudige wijze aan nodige gegevens kunnen (bv e-mailadressen en adressen van ouders).
 
-\paragraph{Hoofdleiding} Ook wel groepsleiding genoemd. De hoofdleiding is verantwoordelijk voor het beheren van de inschrijvingssite (bv gegevensoverdracht bij de jaarovergang, openen en sluiten van de inschrijvingen), voor de verzekering van leden via het GAP en voor het aangeven van subsidies bij de lokale gemeente. Daarnaast is duidelijke communicatie met de ouders via o.a. een e-mailservice zoals MailChimp of EmailOctopus een belangrijke taak voor hen, waardoor een makkelijke manier om e-maillijsten up-to-date te houden een must is.
+\paragraph{Hoofdleiding} Ook wel groepsleiding of eenheidsleiding genoemd. De hoofdleiding is verantwoordelijk voor het beheren van de inschrijvingssite (bv gegevensoverdracht bij de jaarovergang, openen en sluiten van de inschrijvingen), voor de verzekering van leden via het GAP en voor het aangeven van subsidies bij de lokale gemeente. Daarnaast is duidelijke communicatie met de ouders via o.a. een e-mailservice zoals MailChimp of EmailOctopus een belangrijke taak voor hen, waardoor een makkelijke manier om e-maillijsten up-to-date te houden een must is.
 
-\paragraph{Kassiers} Ook wel de financieel verantwoordelijken genoemd. Deze personen zijn verantwoordelijk voor het registreren en alle uitgaven en inkomsten, inclusief die van het inschrijvingsgeld. Aangeven welke gezinnen reeds betaald hebben voor de inschrijving van hun kinderen, is dus een belangrijke functie voor \appname.
+\paragraph{Kassiers} Ook wel de financieel verantwoordelijken genoemd. Deze personen zijn verantwoordelijk voor het registreren van alle uitgaven en inkomsten, inclusief die van het inschrijvingsgeld. Aangeven welke gezinnen reeds betaald hebben voor de inschrijving van hun kinderen, is dus een belangrijke functie voor \appname.
 
 \paragraph{Beheer} Deze functie, vaak vervult door een vrijwillige groep volwassen begeleiders, helpt met het technisch onderhoud van de gebouwen van een jeugdbeweging en beheert projecten op langere termijn, zoals bouwprojecten. Daar komen regelmatig uitgaven bij te pas die gesubsidieerd worden door de lokale gemeente. Een eenvoudige manier om facturen en rekeningen aan te geven, kan hiervoor een nuttige tool zijn.
 
@@ -156,16 +157,60 @@ Daarnaast kan ze hulpmiddelen aanbieden op de volgende manieren. Deze lijst is s
 
 \paragraph{De gemeente} Lokale gemeentes ondersteunen jeugdbewegingen aan de hand van subsidies. Deze subsidies worden berekend op basis van een reeks aan documenten die de jeugdbeweging moet voorleggen. \appname zal initieel het subsidiesysteem van Lubbeek ondersteunen door de nodige informatie en documenten waarover het beschikt op een overzichtelijke manier te verzamelen voor de hoofdleiding.
 
-\paragraph{Chirojeugd Vlaanderen} Deze koepelorganisatie van alle Chiro's regelt de verzekeringen van leden, leiders en andere vrijwilligers (bv keukenploeg) doormiddel van het GAP (groepsadministratieportaal).
+\paragraph{Chirojeugd Vlaanderen} Deze koepelorganisatie van alle Chiro's regelt de verzekeringen van leden, leiders en andere vrijwilligers (bv keukenploeg). Chiro's dienen hun gegevens door te geven doormiddel van het GAP (groepsadministratieportaal).
 
+\paragraph{De ontwikkelaars} Dit project is begonnen door enkele vrijwilligers met als doel om de jeugdbeweging waar zij van houden zo goed mogelijk te ondersteunen. Feedback van alle eindgebruikers is daarbij ontzettend belangrijk.
 
 
 \section{Details over \appname} \label{sec:details}
 % Hou in gedachten: gebruikersgemak, motivatie/documentatie, uitbreidbaarheid, onderhoudsgemak, beveiliging
 \subsection{Inschrijvingssysteem}
+Het inschrijvingssysteem bestaat uit vier verschillende componenten: de inschrijvingssite waar ouders hun gegevens kunnen beheren, de ledenlijsten waar leiders deze gegevens kunnen raadplegen, de jaarovergang waar de hoofdleiding een nieuw chirojaar kan starten en het instellingenpaneel waarmee de hoofdleiding de inschrijvingssite kan beheren.
+ 
 \subsubsection{Inschrijvingswebsite}
+Dit is een systeem voor ouders waarmee ze de gegevens van hun gezin kunnen beheren, kinderen kunnen inschrijven, hemden kunnen bestellen en financiële attesten kunnen downloaden. Daarbij is het belangrijk dat ouders enkel aan de gegevens van hun eigen gezin kunnen, en dat niemand anders aan deze gegevens kan.
+
+Gebruiksvriendelijkheid en transparantie staan hier centraal: alle taken moet intuïtief duidelijk zijn en waar nodig moet uitleg staan over welke gegevens we verzamelen en waarom we die nodig hebben.
+
+Per gezin houdt \appname de volgende informatie bij.
+\begin{itemize}
+\item \dots
+\end{itemize}
+Van elk kind houdt \appname het volgende bij.
+\begin{itemize}
+\item \dots
+\end{itemize}
+
+Kampinschrijving? \dots
+
 \subsubsection{Ledenlijsten}
+Leiders moeten de gegevens van de leden van hun groep en die hun ouders kunnen raadplegen.
+
+Nodige gegevens:
+\begin{itemize}
+\item \dots
+\end{itemize}
+
+Merk op dat hier een afweging bestaat tussen overzicht en details. Het is enerzijds belangrijk om snel een overzicht te kunnen krijgen van alle leden in een groep, en anderzijds moeten belangrijke details per lid wel duidelijk zichtbaar zijn.
+
+Leiders moeten ook gegevens kunnen aanpassen.
+
+Filters\dots
+
+Downloaden\dots
+
 \subsubsection{Jaarovergang}
+Bij de jaarwisseling moet de hoofdleiding een nieuw chirojaar kunnen starten. Dat houdt in dat:
+\begin{itemize}
+\item de hoofdleiding aanduid welke groepen in het nieuwe jaar actief zijn,
+\item de hoofdleiding aanduid welke leiders in het nieuwe jaar actief zijn,
+\item nieuwe inschrijvingen vanaf nu voor het nieuwe werkjaar zijn,
+\item de hoofdleiding een nieuw ledenboekje upload?? (beter idee: linken naar website, en daar een jaar-onafhankelijke versie zetten)
+\item \dots
+\end{itemize}
+
+\subsubsection{Instellingenpaneel}
+
 
 \subsection{Verzekeringen}
 
@@ -176,6 +221,8 @@ Daarnaast kan ze hulpmiddelen aanbieden op de volgende manieren. Deze lijst is s
 \subsection{Subsidies}
 
 \subsection{Beveiliging}
+
+\subsection{Feedback}
 
 \subsection{Bijkomende tools}
 
